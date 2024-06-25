@@ -51,3 +51,18 @@ def post_curso(request):
     }
 
     return JsonResponse(context)
+
+
+
+""" uso de drf """
+from rest_framework import generics
+from rest_framework import serializers
+
+class CursoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Curso
+        fields = '__all__'
+
+class CursoList(generics.ListCreateAPIView):
+    queryset = Curso.objects.all()
+    serializer_class = CursoSerializer        
